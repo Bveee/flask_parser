@@ -7,7 +7,7 @@ class ItemWB(db.Model):
     __tablename__ = 'itemsWB'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150))
+    name = db.Column(db.String(200))
     brand = db.Column(db.String(100))
     salePriceU = db.Column(db.Float)
     rating = db.Column(db.Float)

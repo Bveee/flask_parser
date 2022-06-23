@@ -59,7 +59,7 @@ def print_dict():
 
 @app.route('/new')
 def save_dict():
-    page = 1
+    page = 30
     response_dict = {1}
     while len(response_dict) != 0:
         ids = get_ids()
@@ -79,7 +79,11 @@ def save_dict():
                 db.session.add(item)
                 db.session.commit()
             else:
-                print("update price")
+                item = ItemWB.query.filter_by(id=key).update(
+                    dict(salePriceU=response_dict[key]["salePriceU"])
+                )
+                db.session.commit()
+                print(key, "update price")
         page += 1
         time.sleep(5)
     return ("Created!", page)
