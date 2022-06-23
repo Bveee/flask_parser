@@ -36,20 +36,23 @@ def json_to_dict(url):
     response_dict = html_json
     # print(response_dict)
     for key in range(len(response_dict)):
-        # if re.search(r'\d\d\d.*[x|х|\*].*\d\d\d', response_dict[key]["name"]):
+        # re.search(r'\d\d\d.*[x|х|\*].*\d\d\d', response_dict[key]["name"])
         response_uniq[response_dict[key]["id"]] = {
             "name": response_dict[key]["name"],
             "brand": response_dict[key]["brand"],
             "salePriceU": response_dict[key]["salePriceU"]/100,
             "rating": response_dict[key]["rating"],
-            "link": "https://www.wildberries.ru/catalog/{}/detail.aspx".format(response_dict[key]["id"]),
+            "link": "https://www.wildberries.ru/catalog/{}/detail.aspx".format(
+                response_dict[key]["id"]
+            ),
             }
     return response_uniq
 
 
 @app.route('/')
 def print_dict():
-    url = "https://catalog.wb.ru/catalog/electronic3/catalog?locale=ru&subject=515"
+    url = "https://catalog.wb.ru/catalog/electronic3/catalog?locale=ru&" \
+        "subject=515"
     response_dict = json_to_dict(url)
     return response_dict
 
@@ -60,7 +63,8 @@ def save_dict():
     response_dict = {1}
     while len(response_dict) != 0:
         ids = get_ids()
-        url = "https://catalog.wb.ru/catalog/electronic3/catalog?locale=ru&subject=515&page={}".format(page)
+        url = "https://catalog.wb.ru/catalog/electronic3/catalog?locale=ru&" \
+            "subject=515&page={}".format(page)
         response_dict = json_to_dict(url)
         for key in response_dict:
             if key not in ids:
@@ -68,7 +72,7 @@ def save_dict():
                     id=key,
                     name=response_dict[key]["name"],
                     brand=response_dict[key]["brand"],
-                    salePriceU=response_dict[key]["salePriceU"],  # оставить и создать еще ячейку для истории
+                    salePriceU=response_dict[key]["salePriceU"],
                     rating=response_dict[key]["rating"],
                     link=response_dict[key]["link"],
                 )
