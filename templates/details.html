@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Details about {{ title }} {% endblock %}</h1>
+
+    <table border="1">
+        <col style="width:30px">
+        <col style="width:150px">
+        <col style="width:100px">
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Дата</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in my_list.items(): %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td align="center">{{ key }}</td>
+                    <td align="center">{{ value }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

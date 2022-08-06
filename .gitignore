@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+.vscode/
+.streamlit/
+.env
+env/
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+static/
+templates/index_work.html
+templates/index.html
+templates/index1.html
+templates/testt.py
+templates/testt2.py
+requirements1.txt
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+main1.py
+main2.py
+app_main_20062022.py
+app_main_28062022.py
+requirements111.txt
+future_code.py
+front.py
+catalog.txt
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+*.DS_Store

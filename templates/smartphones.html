@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} View DB page {{ page }} {% endblock %}</h1>
+
+    <table border="1">
+        <col style="width:50px">
+        <col style="width:80px">
+        <col style="width:80px">
+        <col style="width:500px">        
+        <col style="width:100px">
+        <col style="width:30px">
+        <col style="width:150px">
+        <caption style="color: purple" align="center"><h1>{{ title }}</h1></caption>
+        <tr>
+            <th>№</th>
+            <th>id</th>
+            <th>Бренд</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Рейтинг</th>
+            <th>Ссылка</th>
+        </tr>
+        {% for item in my_list.items %}
+            <tr>
+                <th scope="row">{{loop.index+(per_page*page)-per_page}}</th>
+                <td align="center"><a href="/smartphones/{{ item.id }}">{{item.id}}</td>
+                <td align="center">{{item.brand}}</td>
+                <td>{{item.name}}</td>
+                <td align="center">{{item.sale_price}}</td>
+                <td align="center">{{item.rating}}</td>
+                <td align="center"><a href="{{ item.link }}">{{item.link}}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if my_list.has_prev %}
+        <a href="{{ url_for('view', page=my_list.prev_num) }}">&lt;&lt; Prev items</a>
+    {% else %}
+        &lt;&lt; Prev items
+    {% endif %} 
+    {% for page_num in my_list.iter_pages(left_edge=1, right_edge=2, left_current=5, right_current=5) %}
+        {% if page_num %}
+            {% if my_list.page == page_num %}
+                <a href="{{ url_for('view', page=page_num) }}"
+                    class="btn btn-dark">
+                    {{ page_num }}
+                </a>
+            {% else %}
+                <a href="{{ url_for('view', page=page_num) }}"
+                    class="btn btn-outline-dark">
+                    {{ page_num }}
+                </a>
+            {% endif %}
+            {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+
+    {% if my_list.has_next %}
+        <a href="{{ url_for('view', page=my_list.next_num) }}">Next items &gt;&gt;</a>
+    {% else %}
+        Prev items &gt;&gt;
+    {% endif %}
+{% endblock %}
